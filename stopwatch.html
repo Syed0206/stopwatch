@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>stopwatch</title>
+	<style type="text/css">
+	*{
+		padding: 0;
+		border:0;
+		box-sizing: border-box;
+	}	
+	#container{
+		width:300px;
+		height: 60px;
+	border-radius: 5px;
+	justify-content: center;
+	text-align: center;
+	align-items:center;
+	background-color: white;
+	}
+	.colon,#sec,#min,#hr{
+		font-size: 50px;
+		font-weight: bolder;
+		color:black;
+		padding:5px 5px;
+		cursor: pointer;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+	}
+	#buttons{
+		justify-content: space-between;
+	}
+ #b1,#b2,#b3{
+font-size: 24px;
+cursor: pointer;
+		font-weight: bolder;
+		border-radius: 5px;
+		color:black;
+		white-space: pre;
+		width:80px;
+		text-transform:capitalize;
+		font-family: 'popins'
+}
+#b2{
+	margin:20px 20px;
+}
+h1{
+	font-size: 36px;
+	color:white;
+	font-style: 'popins';
+	font-weight: bolder;
+}
+	body{
+		display:flex;
+		flex-direction: column;
+		margin:100px 100px;
+		justify-content: center;
+		align-items: center;
+		background-color:#6A5ACD; 
+		text-align: center;
+	}
+.not-allowed-cursor {
+  cursor: not-allowed;
+}
+
+	</style>
+</head>
+<body>
+	<h1>Stop Watch</h1>
+	<div id="container">
+		<span id="hr">00</span>
+		<span class="colon">:</span>
+		<span id="min">00</span>
+		<span class="colon">:</span>
+		<span id="sec">00</span>
+		</div>
+	
+<div class="buttons">
+	<button id="b1">start</button>
+	<button id="b2">stop</button>
+	<button id="b3">reset</button>
+</div>
+	<script>
+		let h=0;
+		let m=0;
+		let s=0;
+		let timer;
+	document.getElementById('b1').addEventListener('click',function(){
+		timer=true;
+		stopWatch();
+	});
+	document.getElementById('b2').addEventListener('click',function(){
+		timer=false;
+		});
+	document.getElementById('b3').addEventListener('click',function(){
+		h=0;
+		s=0;
+		m=0;
+	document.getElementById('sec').innerHTML="00";
+	document.getElementById('min').innerHTML="00";
+	document.getElementById('hr').innerHTML="00";
+	});
+function stopWatch(){
+	if (timer){
+		s++;
+		if (s==60){
+			m++;
+			s=0;
+		}
+		if (m==60){
+			h++;
+			m=0;
+		}
+		let hr=h;
+		let sec=s;
+		let min=m;
+		if (s<10){
+			sec="0"+s;
+		}
+		if (m<10){
+			min="0"+m;
+		}
+		if (h<10){
+			hr="0"+h;
+		}
+	document.getElementById('sec').innerHTML=sec;
+	document.getElementById('min').innerHTML=min;
+	document.getElementById('hr').innerHTML=hr;
+	setTimeout(stopWatch, 500);
+	}
+}
+</script>
+</body>
+</html>
